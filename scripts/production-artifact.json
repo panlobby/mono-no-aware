@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "programId": "EapeYFLdbqdw4YCVfKwW9VPF1prdU14351vf3sMCRvDj",
+  "solanaVersion": "2.3.0",
+  "anchorVersion": "0.31.2",
+  "rustVersion": "1.98.0",
+  "sourceHashes": {
+    "programs/fee-short/src/lib.rs": "3c61a7f37fd6d0c753f865b6f7bb5d758d0e9e623cb34c50d41f0f275387530e",
+    "tests/fee-short.ts": "d8067797754c9d36ac547f177b996a48333976faa19f3873aaccdabbbe0bb82d"
+  },
+  "artifacts": {
+    "fee_short.so": "9c95e91ff0a89527e6105ba0d5739948c8383c9fd058db47467cf0c35169e568",
+    "fee_short.json": "9616775e19c0b90087e35a02d7acb1fd0fa3377ccae04ac86c09818653a104d3"
+  },
+  "instructions": [
+    "borrow_sell_deposit_checked",
+    "claim_damm_fees",
+    "claim_dbc_fees",
+    "deposit_sol",
+    "init_marginfi_account",
+    "init_state",
+    "repay_all",
+    "sweep_base",
+    "sweep_out",
+    "update_config",
+    "withdraw_all"
+  ]
+}
