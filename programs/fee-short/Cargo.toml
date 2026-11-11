@@ -1,0 +1,25 @@
+[package]
+name = "fee-short"
+version = "0.1.0"
+description = "Fee-short program: DBC/DAMM SOL fees borrow PUMP on Project 0 and sell it"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "fee_short"
+
+[features]
+default = []
+# Local testing only: relaxed owner checks for mock PriceUpdateV2 accounts.
+# Unit tests run with --features local-test. Mainnet builds must NEVER
+# enable it: real PriceUpdateV2 owner must be the Pyth Receiver program.
+local-test = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+
+[dependencies]
+anchor-lang = "0.31.2"
+anchor-spl = "0.31.2"
