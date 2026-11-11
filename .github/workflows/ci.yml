@@ -1,0 +1,50 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Install JS dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Typecheck
+        run: npm run check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Verify launch parameters and curve math
+        run: npm run verify:params
+
+      - name: Verify CPI account lists against IDLs
+        run: npx ts-node scripts/check-claim-accounts.ts
+
+      - name: Rust unit tests (55 tests)
+        run: cargo test -p fee-short --locked --features local-test
+
+      - name: Rust production check (no local-test mocks)
+        run: cargo check -p fee-short --locked
+
+      - name: Rust formatting
+        run: cargo fmt --check
+
+      - name: Rust clippy
+        run: cargo clippy -p fee-short --locked -- -D warnings
