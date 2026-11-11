@@ -1,0 +1,25 @@
+[toolchain]
+package_manager = "npm"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.localnet]
+fee_short = "EapeYFLdbqdw4YCVfKwW9VPF1prdU14351vf3sMCRvDj"
+
+[programs.mainnet]
+fee_short = "EapeYFLdbqdw4YCVfKwW9VPF1prdU14351vf3sMCRvDj"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+# ts-mocha binary is broken on Node 26 (yargs ESM load error), so tests run
+# through the programmatic mocha runner instead. Needs a local-test build:
+# anchor test -- --features local-test
+test = "npm run test:client"
